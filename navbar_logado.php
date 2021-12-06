@@ -1,14 +1,14 @@
 <header class="p-3 mb-3 border-bottom bg-dark">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-light text-decoration-none">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
           <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
         </a>
 
         <ul class="nav col-12 col-lg-auto text-light me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="index.php" class="nav-link px-2 link-secondary">Meus Pets</a></li>
-          <li><a href="#" class="nav-link px-2 link-dark disabled">Meus Pedidos(Em Breve)</a></li>
-          <li><a href="#" class="nav-link px-2 link-dark">Meus Agendamentos</a></li>
+          <li><a href="index.php" class="nav-link px-2">Meus Pets</a></li>
+          <li><a href="#" class="nav-link px-2 disabled">Meus Pedidos(Em Breve)</a></li>
+          <li><a href="#" class="nav-link px-2">Meus Agendamentos</a></li>
         </ul>
 
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -21,7 +21,7 @@
           </a>
           <ul class="dropdown-menu text-small" aria-labelledby="dd1">
             <li><a class="dropdown-item" href="#">Configurações</a></li>
-            <li><a class="dropdown-item" href="#">Perfil</a></li>
+            <li><a class="dropdown-item" href="perfil.php">Perfil</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="logout.php">Sair</a></li>
           </ul>

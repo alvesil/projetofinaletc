@@ -92,7 +92,7 @@
                       <td>'.$pet['PetSexo'].'</td>
                       <td>'.number_format($pet['PetPeso'], 2, ",", ".").' KG</td>
                       <td>'.date("d/m/Y", strtotime($pet['PetDataNascimento'])).'</td>
-                      <td><a href="#">Foto</a></td>
+                      <td><a href="#">Foto da(o) '.$pet['PetNome'].'</a></td>
                     </tr>
                   ';
                 }
@@ -120,7 +120,6 @@
 
     <!-- Bootstrap core CSS -->
   <link href="bootstrap-5.1.3-dist/css/bootstrap.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/carousel.css">
 
     <style>
       .bd-placeholder-img {
@@ -135,6 +134,11 @@
         .bd-placeholder-img-lg {
           font-size: 3.5rem;
         }
+      }
+
+      img{
+        width: 1600px;
+        height: 800px;
       }
     </style>
 
@@ -153,47 +157,43 @@
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
     </div>
     <div class="carousel-inner">
-      <div class="carousel-item active">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
+      <div class="carousel-item active"> 
         <img src="img/dogs.jpg" alt="">
         <div class="container">
           <div class="carousel-caption text-start">
-            <h1>Example headline.</h1>
+            <!-- <h1>Example headline.</h1>
             <p>Some representative placeholder content for the first slide of the carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+            <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p> -->
           </div>
         </div>
       </div>
       <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
         <img src="img/gatos.jpg" alt="">
         <div class="container">
           <div class="carousel-caption">
-            <h1>Another example headline.</h1>
+            <!-- <h1>Another example headline.</h1>
             <p>Some representative placeholder content for the second slide of the carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p> -->
           </div>
         </div>
       </div>
       <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
         <img src="img/aves.jpg" alt="">
         <div class="container">
           <div class="carousel-caption text-end">
-            <h1>One more for good measure.</h1>
+            <!-- <h1>One more for good measure.</h1>
             <p>Some representative placeholder content for the third slide of this carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+            <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p> -->
           </div>
         </div>
       </div>
       <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
         <img src="img/roedores.jpg" alt="">
         <div class="container">
           <div class="carousel-caption text-end">
-            <h1>One more for good measure.</h1>
+            <!-- <h1>One more for good measure.</h1>
             <p>Some representative placeholder content for the third slide of this carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+            <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p> -->
           </div>
         </div>
       </div>
