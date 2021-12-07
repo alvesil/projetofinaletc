@@ -44,27 +44,31 @@ session_start();
   </head>
   <center>
   <body>
-    <?php require_once("navbar_logado.php") ?>
+    
       
         <?php
-            $email = $_SESSION['email'];
-
+            $id = $_SESSION['id'] ?? '';
+            $email = $_SESSION['email'] ?? '';
             $tutor = new UsuarioTutor;
+            $tutor->setID($id);
             $tutor->setEmail($email);
             
             $consultar = new ClassUsuarioDAO;
             //print_r($tutor);
-            $resultado = $consultar->listarTutor($tutor);
+            $resultadoPETS = $consultar->listarPetTutor($tutor);
             //print_r($resultadoPETS);
+
+            $consultarTutor = new ClassUsuarioDAO;
+            $resultadoTutor = $consultarTutor->listarTutor($tutor);
             
         ?>
+        <?php require_once("navbar_logado.php") ?>
         <br><br><br><br><br>
         <h1>Novo Agendamento</h1>
-        <p>Nome: <input readonly value="<?php echo $resultado['TutorNome'];?>" ></p>
-        <p>Email: <input readonly value="<?php echo $resultado['TutorEmail'];?>" ></p>
-        <p>Senha: <input readonly type="password" value="<?php echo $resultado['TutorPassword'];?>" ></p>
-        <p>Telefone: <input readonly value="<?php echo $resultado['TutorTelefone'];?>" ></p>
-        <button class="btn btn-outline-primary">Alterar Dados</button>
+        <p>Tipo de Serviço: <input readonly value="" ></p>
+        <p>Pet: <input readonly value="" ></p>
+        <p>Dia: <input readonly type="date" value="" ></p>
+        <button class="btn btn-outline-primary">Agendar</button>
       </table>
       
 

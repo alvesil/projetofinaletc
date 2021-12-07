@@ -51,14 +51,76 @@ public function listarPetTutor($novoUsuario) {
     }        
 }//fechamento do método listar
 
+// listar pet especifico do Tutor
+public function listarPetEspecifico($novoUsuario) {
+    try {
+        $pdo = Conexao::getInstance($novoUsuario);
+        $sql = "SELECT * FROM pets WHERE PetID = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindValue(1, $novoUsuario->getID());
+        $stmt->execute();
+        return $stmt->fetchAll();
+    } catch (PDOException $erro) {
+        return $erro->getMessage();
+    }        
+}//fechamento do método listar
+
+// Listar todas as raças dos pets
+public function consultarRacaPet() {
+    try {
+        $pdo = Conexao::getInstance();
+        $sql = "SELECT * FROM racas";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    } catch (PDOException $erro) {
+        return $erro->getMessage();
+    }        
+}//fechamento do método listar
+
+
+// Listar a raça do pet especifico
+public function consultarRacaPetUnique($petNome) {
+    try {
+        $pdo = Conexao::getInstance($petNome);
+        $sql = "SELECT RacaID FROM racas WHERE RacaNome = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindValue(1, $petNome);   
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $erro) {
+        return $erro->getMessage();
+    }        
+}//fechamento do método listar
+
+// adicionar novo pet ao Tutor
+public function adicionarPet($novoPet) {
+    try {
+        $pdo = Conexao::getInstance($novoPet);
+        $sql = "INSERT INTO pets (PetNome, PetSexo, PetPeso, PetDataNascimento, PetFoto, TutorID, RacaID) 
+        VALUES(?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindValue(1, $novoPet->getPetNome());
+        $stmt->bindValue(2, $novoPet->getPetSexo());
+        $stmt->bindValue(3, $novoPet->getPetPeso());
+        $stmt->bindValue(4, $novoPet->getPetDataNascimento());
+        $stmt->bindValue(5, $novoPet->getPetFoto());
+        $stmt->bindValue(6, $novoPet->getPetTutorID());
+        $stmt->bindValue(7, $novoPet->getPetRacaID());
+        $stmt->execute();
+        return true;
+    } catch (PDOException $erro) {
+        return $erro->getMessage();
+    }        
+}//fechamento do método listar
 
 // Excluir usuário pelo matricula
-    public function excluir($novoUsuario){
+    public function deletePet($apagarPet){
         try {
-            $pdo = Conexao::getInstance();
-            $sql = "DELETE FROM contatos WHERE matricula=:matricula";
+            $pdo = Conexao::getInstance($apagarPet);
+            $sql = "DELETE FROM pets WHERE PetID=:id";
             $stmt = $pdo->prepare($sql);
-            $stmt->bindValue(':matricula',$novoUsuario->getMatricula());
+            $stmt->bindValue(':id',$apagarPet->getPetID());
             $stmt->execute();
             return TRUE;
         }catch (PDOException $erro) {

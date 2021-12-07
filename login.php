@@ -66,7 +66,7 @@
     ?>
     <main class="form-signin">
     <form method="POST">
-        <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+        <img class="mb-4" src="img/ps.png" alt="" width="150" height="90">
         <h1 class="h3 mb-3 fw-normal">Faça o Login</h1>
 
         <div class="form-floating">
@@ -84,7 +84,17 @@
         </label>
         </div>
         <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-        <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+        <p class="mt-5 mb-3 text-muted">&copy; <?php echo date("Y");?></p>
+        <?php 
+
+          try {
+            $pdoStatus = new PDO("mysql:host=localhost;dbname=petshop_db","root","");
+            echo 'Server Status: Online <a style="color: green; background-color: green; border-radius: 50%; " >aaa</a>';
+          } catch (PDOException $err) {
+            echo 'Server Status: Offline <a style="color: red; background-color: red; border-radius: 50%; " >aaa</a>';
+
+          }
+        ?>
     </form>
     </main>
 

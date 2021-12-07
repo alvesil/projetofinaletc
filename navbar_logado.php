@@ -8,16 +8,16 @@
         <ul class="nav col-12 col-lg-auto text-light me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="index.php" class="nav-link px-2">Meus Pets</a></li>
           <li><a href="#" class="nav-link px-2 disabled">Meus Pedidos(Em Breve)</a></li>
-          <li><a href="#" class="nav-link px-2">Meus Agendamentos</a></li>
+          <li><a href="agendamento.php" class="nav-link px-2">Meus Agendamentos</a></li>
         </ul>
 
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-          <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+          <button class="btn disabled text-light"><?php echo $resultadoTutor['TutorNome']; ?></button>
         </form>
 
         <div class="dropdown text-end">
           <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dd1" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+            <img src="img/ps.png" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
           <ul class="dropdown-menu text-small" aria-labelledby="dd1">
             <li><a class="dropdown-item" href="#">Configurações</a></li>

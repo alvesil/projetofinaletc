@@ -38,3 +38,67 @@ class UsuarioTutor{
         $this->telefone = $telefone;
     }
 }
+
+/**
+ * 
+ */
+class Pet{
+    private $petID;
+    private $petNome;
+    private $petSexo;
+    private $petPeso;
+    private $petDataNascimento;
+    private $petFoto;
+    private $petTutorID;
+    private $petRacaID;
+
+    function getPetID(){
+        return $this->petID;
+    }
+    function getPetNome(){
+        return $this->petNome;
+    }
+    function getPetSexo(){
+        return $this->petSexo;
+    }
+    function getPetPeso(){
+        return $this->petPeso;
+    }
+    function getPetDataNascimento(){
+        return $this->petDataNascimento;
+    }
+    function getPetFoto(){
+        return $this->petFoto;
+    }
+    function getPetTutorID(){
+        return $this->petTutorID;
+    }
+    function getPetRacaID(){
+        return $this->petRacaID;
+    }
+
+    function setPetID($petID){
+        $this->petID = $petID;
+    }
+    function setPetNome($petNome){
+        $this->petNome = $petNome;
+    }
+    function setPetSexo($petSexo){
+        $this->petSexo = $petSexo;
+    }
+    function setPetPeso($petPeso){
+        $this->petPeso = $petPeso;
+    }
+    function setPetDataNascimento($petDataNascimento){
+        $this->petDataNascimento = $petDataNascimento;
+    }
+    function setPetFoto($petFoto){
+        $this->petFoto = $petFoto;
+    }
+    function setPetTutorID($petTutorID){
+        $this->petTutorID = $petTutorID;
+    }
+    function setPetRacaID($petRacaID){
+        $this->petRacaID = $petRacaID;
+    }
+}
