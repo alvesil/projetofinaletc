@@ -119,7 +119,54 @@
               </center>
             ';
           }
-        ?>
+           if (isset($_GET['petUpdated'])) {
+            // code...
+             echo
+              '
+              <center>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  <strong>Regirstro do Pet Atualizado!</strong>.
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              </center>
+            ';
+          }
+          if (isset($_GET['petPicID'])) { ?>
+            <?php
+              $newPet = new Pet;
+              $newPet->setPetID($_GET['petPicID']);
+
+              $newPicPet = new ClassUsuarioDAO;
+              $resultPetPic = $newPicPet->listarPetEspecifico($newPet);
+            ?>
+             <!-- Button trigger modal -->
+            <button hidden id="petPic" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+              Launch static backdrop modal
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel"><?php echo $resultPetPic['PetNome']; ?></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <img style="width: 1000px;" src="uploads/pets/<?php echo $resultPetPic['PetFoto']; ?>">
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <script>
+              window.onload = function(){
+                document.getElementById("petPic").click();
+              }
+            </script>
+          <?php } ?>
+        
         <table class="table w-75">
             <tr>
               <th>Nome</th>
@@ -139,7 +186,7 @@
                       <td>'.$pet['PetSexo'].'</td>
                       <td>'.number_format($pet['PetPeso'], 2, ",", ".").' KG</td>
                       <td>'.date("d/m/Y", strtotime($pet['PetDataNascimento'])).'</td>
-                      <td><a href="#">Foto da(o) '.$pet['PetNome'].'</a></td>
+                      <td><a href="index.php?petPicID='.$pet['PetID'].'">Foto da(o) '.$pet['PetNome'].'</a></td>
                        <td><a class="btn btn-outline-warning" href="editarPet.php?editarPet=true&petID='.$petID.'">Editar</a></td>
                       <td><a class="btn btn-outline-danger" href="index.php?apagarPet=true&petID='.$petID.'">Apagar</a></td>
                     </tr>

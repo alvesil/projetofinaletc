@@ -2,26 +2,25 @@
 <?php
 require_once 'conexao.php';
 class ClassUsuarioDAO {
-   		public function cadastrar($novoUsuario) {
-        try {
-            $pdo = Conexao::getInstance(); // Instanciando o objeto a partir da classe conexão -solicitar um “getInstance()” na nossa classe Conexao
-            $sql = "INSERT INTO tutores(TutorNome,TutorEmail,TutorPassword, TutorTelefone) values (?,?,?,?)";
-            $stmt = $pdo->prepare($sql);
-            $stmt->bindValue(1, $novoUsuario->getMatricula());
-            $stmt->bindValue(2, $novoUsuario->getNome());
-            $stmt->bindValue(3, $novoUsuario->getPassword());
-            $stmt->bindValue(4, $novoUsuario->getTelefone());
-            $stmt->execute();
-			//Os “binds” são as operações de atribuição de valores aos nossos parâmetros, ou seja, o parâmetro “:nome” terá o valor armazenado em “$usuario-&gt;getNome()” e assim por diante. Utilizando o método “bindValue()” do PDO garantimos uma série de segurança extra para nosso código, tais como prevenção a SQL Injection.
-           //return true;
-	        echo "<center><h1>Cadastro realizado com sucesso!</h1><center><br>";
-			?>
-			<a href="listar.php">Listar</a>
-		    <?php
-			} catch (PDOException $erro) {
-				echo $erro->getMessage();
-			}
-		}//fechamento do método cadastrar
+   public function cadastrarTutor($novoUsuario) {
+    try {
+        $pdo = Conexao::getInstance(); // Instanciando o objeto a partir da classe conexão -solicitar um “getInstance()” na nossa classe Conexao
+        $sql = "INSERT INTO tutores(TutorNome,TutorEmail,TutorPassword, TutorTelefone, TutorFoto) values (?,?,?,?, ?)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindValue(1, $novoUsuario->getNome());
+        $stmt->bindValue(2, $novoUsuario->getEmail());
+        $stmt->bindValue(3, $novoUsuario->getPassword());
+        $stmt->bindValue(4, $novoUsuario->getTelefone());
+        $stmt->bindValue(5, $novoUsuario->getFoto());
+        $stmt->execute();
+		//Os “binds” são as operações de atribuição de valores aos nossos parâmetros, ou seja, o parâmetro “:nome” terá o valor armazenado em “$usuario-&gt;getNome()” e assim por diante. Utilizando o método “bindValue()” do PDO garantimos uma série de segurança extra para nosso código, tais como prevenção a SQL Injection.
+        //return true;
+        echo "<center><h1>Cadastro realizado com sucesso!</h1><center><br>";
+        return true;
+		} catch (PDOException $erro) {
+			echo $erro->getMessage();
+		}
+	}//fechamento do método cadastrar
 		
 // Listar os usuários Tutores
     public function listarTutor($novoUsuario) {
@@ -57,9 +56,9 @@ public function listarPetEspecifico($novoUsuario) {
         $pdo = Conexao::getInstance($novoUsuario);
         $sql = "SELECT * FROM pets WHERE PetID = ?";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindValue(1, $novoUsuario->getID());
+        $stmt->bindValue(1, $novoUsuario->getPetID());
         $stmt->execute();
-        return $stmt->fetchAll();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $erro) {
         return $erro->getMessage();
     }        
@@ -129,13 +128,17 @@ public function adicionarPet($novoPet) {
     }//fechamento do método excluir
 	
 // Atualizar
-    public function alterar($novoUsuario) {
+    public function atualizarPet($novoPet) {
         try {
             $pdo = Conexao::getInstance(); 
-            $sql = "UPDATE contatos SET  matricula=:matricula, nome=:nome WHERE matricula=:matricula";
+            $sql = "UPDATE pets SET PetNome=:nome, PetSexo=:sexo, PetPeso=:peso, PetDataNascimento=:nasc, PetFoto=:foto WHERE PetID=:id";
             $stmt = $pdo->prepare($sql);
-			$stmt->bindValue(':matricula',$novoUsuario->getMatricula());
-			$stmt->bindValue(':nome'     ,$novoUsuario->getNome());
+			$stmt->bindValue(':nome',$novoPet->getPetNome());
+			$stmt->bindValue(':sexo'     ,$novoPet->getPetSexo());
+            $stmt->bindValue(':peso'     ,$novoPet->getPetPeso());
+            $stmt->bindValue(':nasc'     ,$novoPet->getPetDataNascimento());
+            $stmt->bindValue(':foto'     ,$novoPet->getPetFoto());
+            $stmt->bindValue(':id'     ,$novoPet->getPetID());
             $stmt->execute();
             return TRUE;
         } catch (PDOException $erro){
@@ -143,3 +146,4 @@ public function adicionarPet($novoPet) {
         }
     }//fechamento da função alterar
 }//fechamento da classe
+?>

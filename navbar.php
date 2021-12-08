@@ -13,6 +13,6 @@
 
       <div class="col-md-3 text-end">
         <a href="login.php" type="button" class="btn btn-outline-primary me-2">Login</a>
-        <a type="button" class="btn btn-primary">Cadastrar</a>
+        <a href="cadastroTutor.php" type="button" class="btn btn-primary">Cadastrar</a>
     </div>
 </header>

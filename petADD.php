@@ -77,17 +77,26 @@
 
             $adicionarPet = new ClassUsuarioDAO;
 
-            if (isset($_GET['raca'])) {
-              // code...
+            
+
+            if (isset($_POST['submit'])) {
+              $target_dir = "uploads/pets/";
+              $target_file = $target_dir . basename($_FILES["foto"]["name"]);
+              $uploadOk = 1;
+              $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+              if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file)) {
+                echo "The file ". htmlspecialchars( basename( $_FILES["foto"]["name"])). " has been uploaded.";
+              }
+
               $novoPet = new Pet;
-              $novoPet->setPetNome($_GET['nome']);
-              $novoPet->setPetSexo($_GET['sexo']);
-              $novoPet->setPetPeso($_GET['peso']);
-              $novoPet->setPetDataNascimento($_GET['nasc']);
-              $novoPet->setPetFoto($_GET['foto']);
+              $novoPet->setPetNome($_POST['nome']);
+              $novoPet->setPetSexo($_POST['sexo']);
+              $novoPet->setPetPeso($_POST['peso']);
+              $novoPet->setPetDataNascimento($_POST['nasc']);
+              $novoPet->setPetFoto($_FILES['foto']['name']);
               $novoPet->setPetTutorID($resultadoTutor['TutorID']);
 
-              $resultadoPETUNIQUE = $consultar->consultarRacaPetUnique($_GET['raca']);
+              $resultadoPETUNIQUE = $consultar->consultarRacaPetUnique($_POST['raca']);
               $novoPet->setPetRacaID($resultadoPETUNIQUE['RacaID']);
               // print_r($novoPet);
               // print_r($resultadoPETUNIQUE);
@@ -101,7 +110,7 @@
         <?php require_once("navbar_logado.php") ?>
         <br><br><br>
         <h1>Adicionar Pet</h1>
-        <form method="GET" action="petADD.php">
+        <form method="POST" action="petADD.php" enctype="multipart/form-data">
             <table>
                 <tr>
                   <th>
@@ -142,7 +151,7 @@
                   <th>Foto: <input type="file" name="foto"></th>
                 </tr>
           </table>
-          <button type="submit" class="btn btn-primary">Adicionar</button>
+          <button name="submit" type="submit" class="btn btn-primary">Adicionar</button>
         </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
   </body>

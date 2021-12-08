@@ -6,6 +6,7 @@ class UsuarioTutor{
     private $nome;   
     private $password; 
     private $telefone; 
+    private $foto;
 	
     function getID() {
         return $this->id;
@@ -22,6 +23,9 @@ class UsuarioTutor{
     function getTelefone() {
         return $this->telefone;
     }
+    function getFoto() {
+        return $this->foto;
+    }
     function setID($id) {
         $this->id = $id;
     }
@@ -36,6 +40,9 @@ class UsuarioTutor{
     }
     function setTelefone($telefone) {
         $this->telefone = $telefone;
+    }
+    function setFoto($foto) {
+        $this->foto = $foto;
     }
 }
 
