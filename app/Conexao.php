@@ -7,6 +7,7 @@ abstract class Conexao {
             return $pdo;
         } catch (PDOException $erro) {
             echo $erro->getMessage();
+            return $erro->getMessage();
         }
     }
 }

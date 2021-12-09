@@ -83,18 +83,20 @@
             <input type="checkbox" value="remember-me"> Lembrar-me
         </label>
         </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-        <p class="mt-5 mb-3 text-muted">&copy; <?php echo date("Y");?></p>
         <?php 
 
           try {
             $pdoStatus = new PDO("mysql:host=localhost;dbname=petshop_db","root","");
             echo 'Server Status: Online <a style="color: green; background-color: green; border-radius: 50%; " >aaa</a>';
+            echo '<button class="w-100 btn btn-lg btn-primary" type="submit">Logar</button>';
           } catch (PDOException $err) {
             echo 'Server Status: Offline <a style="color: red; background-color: red; border-radius: 50%; " >aaa</a>';
-
+            echo '<button disabled class="w-100 btn btn-lg btn-danger" type="submit">Logar</button>';
           }
         ?>
+        
+        <p class="mt-5 mb-3 text-muted">&copy; <?php echo date("Y");?></p>
+        
     </form>
     </main>
 
